@@ -105,10 +105,30 @@ class RuneDetector:
 
 def create_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser()
-    parser.add_argument("-r", "--rune_folder", default="./runes")
-    parser.add_argument("-t", "--threshold", default=0.3, type=float)
-    parser.add_argument("-v", "--verbose", default=False, action="store_true")
-    parser.add_argument("image", nargs="+")
+    parser.add_argument(
+        "-r",
+        "--rune_folder",
+        default="./runes",
+        help='The folder where the rune images are stored. Defaults to "./runes".',
+    )
+    parser.add_argument(
+        "-t",
+        "--threshold",
+        default=0.3,
+        type=float,
+        help=(
+            "The minimum threshold for a match to be considered valid. "
+            "The score is returned by the metrics.structural_similarity function of skimage. "
+            "Defaults to 0.3."
+        ),
+    )
+    parser.add_argument(
+        "-v", "--verbose", default=False, action="store_true", help="Enable verbose output."
+    )
+    res = ", ".join(f"{w}x{h}" for w, h in _RES)
+    parser.add_argument(
+        "image", nargs="+", help=f"The screenshots. Supported resolutions are: {res}."
+    )
     return parser
 
 
