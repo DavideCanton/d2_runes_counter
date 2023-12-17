@@ -1,0 +1,6 @@
+scikit-image>=0.22.0
+numpy>=1.26.0
+pillow>=10.0.0
+requests>=2.31.0
+black>=23.0.0
+ruff>=0.1.8
